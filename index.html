@@ -872,8 +872,8 @@
                         <div class="error-message" id="nameError">אנא הזינו שם מלא (לפחות 2 תווים)</div>
                     </div>
                     <div class="form-group">
-                        <label>אימייל *</label>
-                        <input type="email" id="email" placeholder="" required>
+                        <label>אימייל</label>
+                        <input type="email" id="email" placeholder="">
                         <div class="error-message" id="emailError">אנא הזינו כתובת אימייל תקינה</div>
                     </div>
                     <div class="form-group">
@@ -967,11 +967,13 @@
                 nameInput.style.borderColor = '#e1e1e1';
             }
 
-            // Email Validation
+            // Email Validation (Optional)
             const emailInput = document.getElementById('email');
             const emailError = document.getElementById('emailError');
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(emailInput.value)) {
+            
+            // בדיקה רק אם השדה לא ריק
+            if (emailInput.value.trim() !== "" && !emailRegex.test(emailInput.value)) {
                 emailError.style.display = 'block';
                 emailInput.style.borderColor = '#d93025';
                 isValid = false;
