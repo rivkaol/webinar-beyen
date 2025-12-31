@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>תודה שנרשמת! - בטן רגועה</title>
+    
+    <!-- Google Fonts: Rubik -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- משתנים וצבעים (זהים לדף הנחיתה) --- */
+        :root {
+            --primary-green: #1B4D3E;
+            --accent-gold: #D4AF37;
+            --bg-cream: #F8F9FA;
+            --text-dark: #333333;
+            --topic-terracotta: #E08E79;
+            --topic-peach: #FFF0EB;
+            --whatsapp-green: #25D366;
+            --shadow-soft: 0 15px 35px rgba(27, 77, 62, 0.08);
+            --radius-card: 20px;
+            --radius-btn: 50px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Rubik', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 25px;
+            text-align: center;
+        }
+
+        /* --- Header & Hero --- */
+        .hero {
+            padding: 60px 0 40px;
+            background: linear-gradient(180deg, var(--topic-peach) 0%, #ffffff 100%);
+            border-bottom-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+            position: relative;
+        }
+
+        .check-icon-large {
+            font-size: 4rem;
+            color: var(--primary-green);
+            background: white;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.2);
+            border: 4px solid var(--accent-gold);
+            animation: popIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        h1 {
+            color: var(--primary-green);
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+
+        /* --- Info Card --- */
+        .info-card {
+            background: white;
+            padding: 30px;
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-soft);
+            margin: -30px auto 40px; /* Overlap effect */
+            max-width: 700px;
+            position: relative;
+            z-index: 10;
+            border-top: 5px solid var(--primary-green);
+        }
+
+        .webinar-details {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 10px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--primary-green);
+        }
+
+        .detail-item i {
+            color: var(--accent-gold);
+            margin-left: 8px;
+        }
+
+        /* --- Next Steps --- */
+        .next-steps {
+            text-align: right; /* RTL alignment for list */
+            max-width: 600px;
+            margin: 0 auto 50px;
+            background: white;
+            padding: 30px;
+            border-radius: var(--radius-card);
+        }
+
+        .next-steps h3 {
+            color: var(--topic-terracotta);
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .step-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+
+        .step-list i {
+            color: var(--primary-green);
+            background: var(--topic-peach);
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-left: 15px;
+            font-size: 0.9rem;
+        }
+
+        /* --- WhatsApp Section --- */
+        .whatsapp-section {
+            background-color: #e9fdf0; /* Very light green */
+            padding: 50px 25px;
+            border-radius: var(--radius-card);
+            margin-bottom: 50px;
+            border: 2px solid var(--whatsapp-green);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .whatsapp-icon-bg {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            font-size: 10rem;
+            color: var(--whatsapp-green);
+            opacity: 0.1;
+            transform: rotate(20deg);
+        }
+
+        .whatsapp-content h3 {
+            color: var(--primary-green);
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+
+        .benefits-list {
+            text-align: right;
+            max-width: 500px;
+            margin: 20px auto;
+            display: inline-block;
+        }
+
+        .benefits-list li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-right: 25px;
+        }
+
+        .benefits-list li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--whatsapp-green);
+            position: absolute;
+            right: 0;
+        }
+
+        .btn-whatsapp {
+            background-color: var(--whatsapp-green);
+            color: white;
+            padding: 1.2rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: var(--radius-btn);
+            display: inline-block;
+            margin-top: 25px;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-5px);
+            background-color: #1da851;
+        }
+
+        .small-note {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        /* --- Tip Section --- */
+        .tip-card {
+            background-color: var(--topic-peach);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 50px;
+            border-right: 6px solid var(--topic-terracotta);
+        }
+
+        .tip-card h4 {
+            color: var(--topic-terracotta);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* --- Footer Question --- */
+        .footer-question {
+            margin-top: auto;
+            padding: 40px 0;
+            background: white;
+            border-top: 1px solid #eee;
+        }
+
+        .contact-link {
+            color: var(--primary-green);
+            font-weight: 500;
+            border-bottom: 1px dashed var(--primary-green);
+            padding-bottom: 2px;
+            transition: all 0.3s;
+        }
+
+        .contact-link:hover {
+            color: var(--accent-gold);
+            border-color: var(--accent-gold);
+        }
+
+        /* Animation */
+        @keyframes popIn {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .hero { padding-top: 40px; }
+            .webinar-details { flex-direction: column; gap: 10px; }
+            .check-icon-large { width: 100px; height: 100px; font-size: 3rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="container">
+            <div class="check-icon-large">
+                <i class="fas fa-check"></i>
+            </div>
+            <h1>תודה על ההרשמה!</h1>
+            <p class="subtitle">אתם בדרך לגלות את סוד הבטן השקטה.</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Webinar Info -->
+        <div class="info-card">
+            <h2 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--text-dark);">אני מצפה לראותכם בוובינר: <br><span style="color: var(--primary-green);">סוף לנפיחות, גזים וצרבות</span></h2>
+            <div class="webinar-details">
+                <div class="detail-item"><i class="far fa-calendar-alt"></i> יום שני | 19.01.26</div>
+                <div class="detail-item"><i class="far fa-clock"></i> שעה 20:00</div>
+                <div class="detail-item"><i class="fas fa-video"></i> שידור חי בזום</div>
+            </div>
+        </div>
+
+        <!-- Next Steps -->
+        <div class="next-steps">
+            <h3>מה קורה עכשיו?</h3>
+            <ul class="step-list">
+                <li><i class="fas fa-envelope-open-text"></i> קישור ישלח אליכם למייל 24 שעות לפני הוובינר.</li>
+                <li><i class="fas fa-bell"></i> תזכורת נוספת תשלח שעה לפני תחילת האירוע.</li>
+            </ul>
+        </div>
+
+        <!-- WhatsApp Group (Main CTA) -->
+        <div class="whatsapp-section">
+            <i class="fab fa-whatsapp whatsapp-icon-bg"></i>
+            <div class="whatsapp-content">
+                <h3>רוצים להבטיח שלא תפספסו שום עדכון?</h3>
+                <p>הצטרפו עכשיו לקבוצת הוואטסאפ השקטה, שם תקבלו:</p>
+                <ul class="benefits-list">
+                    <li>קישור ישיר ותזכורת לפני הוובינר</li>
+                    <li>טיפים לשיפור הבריאות באופן טבעי</li>
+                    <li>מידע על תוספי תזונה לעיכול מיטבי</li>
+                    <li>תכנים בלעדיים למשתתפי הקבוצה</li>
+                </ul>
+                <br>
+                <a href="https://chat.whatsapp.com/HURC9now32q5sk3TD9zipN" class="btn-whatsapp" target="_blank">
+                    <i class="fab fa-whatsapp"></i> הצטרפות לקבוצה עכשיו
+                </a>
+                <p class="small-note"><i class="fas fa-volume-mute"></i> הקבוצה שקטה - רק אני שולחת הודעות</p>
+            </div>
+        </div>
+
+        <!-- Tip -->
+        <div class="tip-card">
+            <h4><i class="fas fa-lightbulb"></i> טיפ קטן להתחלה:</h4>
+            <p>נסו להפחית צריכת סוכר ביום שלפני הוובינר. תופתעו כמה טוב תרגישו!</p>
+        </div>
+    </div>
+
+    <!-- Footer / Question -->
+    <footer class="footer-question">
+        <div class="container">
+            <p>יש לכם שאלות לפני הוובינר? 
+                <a href="https://wa.me/504207702?text=היי+רבקה+יש+לי+שאלה+לוובינר" class="contact-link" target="_blank">לחצו כאן לשליחה לרבקה</a>
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
