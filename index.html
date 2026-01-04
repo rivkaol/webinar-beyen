@@ -1,241 +1,1046 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>וובינר בטן רגועה - וובינר חינמי</title>
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>וובינר בטן רגועה - וובינר חינמי</title>
+    
+    <!-- Google Fonts: Rubik -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <style>
-        /* --- משתנים וצבעים (CSS Variables) --- */
-        :root {
-            --primary-green: #1B4D3E;       /* ירוק יער עמוק - סמכות */
-            --accent-gold: #D4AF37;          /* זהב יוקרתי - הנעה לפעולה */
-            --bg-cream: #F8F9FA;             /* שמנת - רקע כללי */
-            --text-dark: #333333;            /* אפור כהה - טקסט */
-            --text-muted: #666666;           /* אפור בהיר יותר */
-            --topic-terracotta: #E08E79;    /* טרה-קוטה רכה - חום, אדמה, הדגשות */
-            --topic-peach: #FFF0EB;          /* אפרסק חיוור - רקעים רכים */
-            --shadow-soft: 0 15px 35px rgba(27, 77, 62, 0.08);
-            --radius-card: 20px;
-            --radius-btn: 50px;
-        }
+    <style>
+        /* --- משתנים וצבעים (CSS Variables) --- */
+        :root {
+            /* מיתוג קיים */
+            --primary-green: #1B4D3E;       /* ירוק יער עמוק - סמכות */
+            --accent-gold: #D4AF37;         /* זהב יוקרתי - הנעה לפעולה */
+            --bg-cream: #F8F9FA;            /* שמנת - רקע כללי */
+            --text-dark: #333333;           /* אפור כהה - טקסט */
+            --text-muted: #666666;          /* אפור בהיר יותר */
+            
+            /* מיתוג ייחודי לוובינר "בטן רגועה" */
+            --topic-terracotta: #E08E79;    /* טרה-קוטה רכה - חום, אדמה, הדגשות */
+            --topic-peach: #FFF0EB;         /* אפרסק חיוור - רקעים רכים */
+            
+            /* פונקציונלי */
+            --shadow-soft: 0 15px 35px rgba(27, 77, 62, 0.08);
+            --radius-card: 20px;
+            --radius-btn: 50px;
+        }
 
-        /* --- איפוס והגדרות בסיס --- */
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Rubik', sans-serif; background-color: var(--bg-cream); color: var(--text-dark); line-height: 1.8; overflow-x: hidden; }
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-        img { max-width: 100%; display: block; }
+        /* --- איפוס והגדרות בסיס --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-        /* --- אנימציות --- */
-        .reveal { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes subtlePulse { 0% { transform: scale(1); opacity: 0.05; } 50% { transform: scale(1.05); opacity: 0.08; } 100% { transform: scale(1); opacity: 0.05; } }
+        body {
+            font-family: 'Rubik', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
 
-        /* --- טיפוגרפיה --- */
-        h1, h2, h3 { color: var(--primary-green); font-weight: 700; line-height: 1.3; margin-bottom: 1.2rem; }
-        h1 { font-size: 2.8rem; letter-spacing: -1px; }
-        h2 { font-size: 2.2rem; margin-bottom: 2rem; position: relative; display: inline-block; }
-        h3 { font-size: 1.4rem; font-weight: 600; }
-        p { margin-bottom: 1.2rem; font-weight: 400; color: var(--text-dark); max-width: 70ch; margin-left: auto; margin-right: auto; }
-        h2::after { content: ''; display: block; width: 60px; height: 4px; background: var(--topic-terracotta); margin: 10px auto 0; border-radius: 2px; }
-        .text-start h2::after { margin: 10px 0 0 0; }
-        strong { color: var(--topic-terracotta); font-weight: 700; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
 
-        /* --- רכיבי ממשק (UI) --- */
-        .btn { display: inline-block; background-color: var(--accent-gold); color: white; padding: 1.1rem 3rem; font-size: 1.2rem; font-weight: 600; border-radius: var(--radius-btn); transition: all 0.3s ease; cursor: pointer; border: none; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3); text-align: center; }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4); }
-        .btn-green { background-color: var(--primary-green); box-shadow: 0 4px 15px rgba(27, 77, 62, 0.3); }
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 25px; position: relative; }
+        /* --- אנימציות עדינות (Refined Animations) --- */
+        
+        /* גלילה רכה יותר */
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px); /* תנועה קטנה יותר */
+            transition: all 0.8s ease-out;
+        }
 
-        /* --- Sections --- */
-        .hero { background: linear-gradient(135deg, var(--topic-peach) 0%, #ffffff 100%); padding: 100px 0 80px; text-align: center; position: relative; overflow: hidden; }
-        .free-badge { display: inline-block; background-color: var(--primary-green); color: white; padding: 12px 30px; border-radius: 50px; font-weight: 700; font-size: 1.2rem; margin-bottom: 25px; border: 2px solid var(--accent-gold); }
-        .webinar-details { display: flex; justify-content: center; gap: 25px; margin: 40px 0; flex-wrap: wrap; }
-        .detail-item { background: white; padding: 15px 30px; border-radius: 50px; font-weight: 500; color: var(--primary-green); box-shadow: var(--shadow-soft); display: flex; align-items: center; gap: 12px; }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-        .audience-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .audience-image-wrapper img { border-radius: 30px; box-shadow: var(--shadow-soft); width: 100%; height: 100%; object-fit: cover; }
-        .check-list li { margin-bottom: 20px; display: flex; align-items: flex-start; font-size: 1.15rem; }
-        .check-list i { color: var(--topic-terracotta); margin-left: 20px; font-size: 1.4rem; background: var(--topic-peach); padding: 8px; border-radius: 50%; }
+        /* כניסה ראשונית */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 35px; }
-        .card { background: white; padding: 40px 30px; border-radius: var(--radius-card); box-shadow: var(--shadow-soft); border-top: 6px solid var(--accent-gold); transition: transform 0.3s ease; }
-        .card-icon { font-size: 2.2rem; color: var(--topic-terracotta); margin-bottom: 25px; background: var(--topic-peach); width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; border-radius: 50%; }
+        /* תנועת רקע איטית מאוד וכמעט בלתי מורגשת */
+        @keyframes subtlePulse {
+            0% { transform: scale(1); opacity: 0.05; }
+            50% { transform: scale(1.05); opacity: 0.08; }
+            100% { transform: scale(1); opacity: 0.05; }
+        }
 
-        .about-image { position: relative; width: 350px; height: 350px; margin: 0 auto; }
-        .about-image img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 8px solid white; box-shadow: 0 20px 40px rgba(0,0,0,0.1); position: relative; z-index: 2; }
-        .about-quote { background: var(--bg-cream); padding: 30px; border-radius: 0 20px 20px 0; border-right: 5px solid var(--primary-green); margin: 30px 0; font-size: 1.15rem; font-style: italic; }
+        /* --- טיפוגרפיה משופרת --- */
+        h1, h2, h3 {
+            color: var(--primary-green);
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 1.2rem;
+        }
 
-        .testimonials { padding: 100px 0; text-align: center; }
-        .testimonial-slide { display: none; text-align: center; }
-        .testimonial-slide.active { display: block; }
-        .testimonial-image { width: 100%; max-width: 400px; border-radius: 10px; margin: 0 auto; }
+        h1 { font-size: 2.8rem; letter-spacing: -1px; }
+        h2 { font-size: 2.2rem; margin-bottom: 2rem; position: relative; display: inline-block; }
+        h3 { font-size: 1.4rem; font-weight: 600; }
+        
+        p { 
+            margin-bottom: 1.2rem; 
+            font-weight: 400; 
+            color: var(--text-dark);
+            max-width: 70ch;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--topic-terracotta);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
 
-        .faq { padding: 100px 0; background-color: var(--topic-peach); }
-        .accordion { max-width: 800px; margin: 0 auto; }
-        .accordion-item { background: white; margin-bottom: 15px; border-radius: 15px; overflow: hidden; }
-        .accordion-header { padding: 20px 25px; cursor: pointer; display: flex; justify-content: space-between; font-weight: 500; font-size: 1.15rem; color: var(--primary-green); }
+        .text-start h2::after { margin: 10px 0 0 0; }
 
-        .register-section { padding: 100px 0; background-color: var(--primary-green); color: white; text-align: center; }
-        .form-box { background: white; max-width: 500px; margin: 60px auto 0; padding: 50px; border-radius: 30px; border: 8px solid var(--topic-peach); }
-        .form-group { margin-bottom: 25px; text-align: right; }
-        .form-group label { display: block; margin-bottom: 8px; color: var(--primary-green); font-weight: 700; }
-        .form-group input { width: 100%; padding: 16px 20px; border: 1px solid #e1e1e1; border-radius: 12px; font-family: 'Rubik'; font-size: 1.1rem; }
+        strong {
+            color: var(--topic-terracotta);
+            font-weight: 700;
+        }
 
-        /* עיצוב פוטר משפטי משולב */
-        .main-footer {
-            background: #143d30;
-            padding: 40px 20px;
-            text-align: center;
-            color: rgba(255,255,255,0.7);
-            font-size: 0.95rem;
-            border-top: 4px solid var(--accent-gold);
-        }
-        .legal-nav {
-            margin-top: 20px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        .legal-nav a {
-            color: rgba(255,255,255,0.9);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        .legal-nav a:hover {
-            color: var(--accent-gold);
-            text-decoration: underline;
-        }
+        /* --- רכיבי ממשק (UI) --- */
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-gold);
+            color: white;
+            padding: 1.1rem 3rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: var(--radius-btn);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            text-align: center;
+        }
 
-        @media (max-width: 768px) {
-            h1 { font-size: 2.2rem; }
-            .audience-grid { grid-template-columns: 1fr; }
-            .about-image { width: 280px; height: 280px; }
-            .form-box { padding: 30px 20px; }
-        }
-    </style>
+        .btn:hover {
+            transform: translateY(-2px); /* תנועה קטנה יותר בהובר */
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+        }
+        
+        .btn:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-green {
+            background-color: var(--primary-green);
+            box-shadow: 0 4px 15px rgba(27, 77, 62, 0.3);
+        }
+        
+        .btn-green:hover { background-color: #143d30; }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 25px;
+            position: relative;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            background: linear-gradient(135deg, var(--topic-peach) 0%, #ffffff 100%);
+            padding: 100px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-animate-1 { animation: fadeUp 0.8s ease-out forwards; opacity: 0; }
+        .hero-animate-2 { animation: fadeUp 0.8s ease-out 0.2s forwards; opacity: 0; }
+        .hero-animate-3 { animation: fadeUp 0.8s ease-out 0.4s forwards; opacity: 0; }
+        .hero-animate-4 { animation: fadeUp 0.8s ease-out 0.6s forwards; opacity: 0; }
+
+        .free-badge {
+            display: inline-block;
+            background-color: var(--primary-green);
+            color: white;
+            padding: 12px 30px; /* קצת יותר גדול ובולט */
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.2rem; /* פונט מוגדל */
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(27, 77, 62, 0.2);
+            border: 2px solid var(--accent-gold);
+            /* ביטלתי את האנימציה המרחפת */
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 500px;
+            height: 500px;
+            background: var(--topic-terracotta);
+            opacity: 0.05;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: 0;
+            animation: subtlePulse 15s ease-in-out infinite; /* תנועה איטית מאוד */
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .webinar-details {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .detail-item {
+            background: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 500;
+            color: var(--primary-green);
+            box-shadow: var(--shadow-soft);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid rgba(27, 77, 62, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .detail-item:hover { transform: translateY(-3px); }
+        .detail-item i { color: var(--accent-gold); font-size: 1.2rem; }
+
+        /* --- Section: Audience --- */
+        .audience {
+            padding: 90px 0;
+            background-color: white;
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .audience-image-wrapper {
+            position: relative;
+        }
+        
+        .audience-image-wrapper img {
+            border-radius: 30px;
+            box-shadow: var(--shadow-soft);
+            width: 100%;
+            height: 100%;
+            min-height: 400px;
+            object-fit: cover;
+        }
+
+        .check-list li {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            font-size: 1.15rem;
+            color: var(--text-dark);
+        }
+
+        .check-list i {
+            color: var(--topic-terracotta);
+            margin-left: 20px;
+            margin-top: 5px;
+            font-size: 1.4rem;
+            background: var(--topic-peach);
+            padding: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        /* --- Features Cards --- */
+        .features {
+            padding: 100px 0;
+            background-color: var(--bg-cream);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 35px;
+        }
+
+        .card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-soft);
+            border-top: 6px solid var(--accent-gold);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+
+        .card:hover {
+            transform: translateY(-5px); /* תנועה עדינה יותר */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        .card-icon {
+            font-size: 2.2rem;
+            color: var(--topic-terracotta);
+            margin-bottom: 25px;
+            background: var(--topic-peach);
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        /* --- About (נעים להכיר) --- */
+        .about {
+            padding: 120px 0;
+            background-color: white;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .about-image {
+            position: relative;
+            width: 350px;
+            height: 350px;
+            margin: 0 auto;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 8px solid white;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 2;
+            transition: transform 0.5s ease;
+        }
+        
+        /* תנועה עדינה מאוד בהובר */
+        .about-image:hover img {
+            transform: scale(1.02); 
+        }
+
+        .about-decor-circle {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 20px;
+            right: -20px;
+            background-color: var(--topic-peach);
+            border-radius: 50%;
+            z-index: 1;
+        }
+        
+        .about-decor-dots {
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            width: 150px;
+            height: 150px;
+            background-image: radial-gradient(var(--accent-gold) 2px, transparent 2px);
+            background-size: 20px 20px;
+            z-index: 0;
+            opacity: 0.5;
+        }
+        
+        .about-quote {
+            background: var(--bg-cream);
+            padding: 30px;
+            border-radius: 0 20px 20px 0;
+            border-right: 5px solid var(--primary-green);
+            margin: 30px 0;
+            font-size: 1.15rem;
+            color: var(--primary-green);
+            font-style: italic;
+        }
+
+        /* --- Testimonials --- */
+        .testimonials {
+            padding: 100px 0;
+            background: linear-gradient(to bottom, var(--bg-cream), #fff);
+            text-align: center;
+        }
+
+        .slider-container {
+            position: relative;
+            max-width: 700px;
+            margin: 50px auto 0;
+            overflow: hidden; 
+            padding: 10px;
+        }
+
+        .testimonial-slide {
+            display: none;
+            background: transparent;
+            padding: 20px;
+            animation: fadeIn 0.8s ease-in-out;
+            text-align: center;
+        }
+
+        .testimonial-slide.active {
+            display: block;
+        }
+
+        .testimonial-image-container {
+            background: white;
+            padding: 15px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-soft);
+            display: inline-block;
+            max-width: 100%;
+        }
+
+        .testimonial-image {
+            width: 100%;
+            max-width: 400px; 
+            height: auto;
+            border-radius: 10px;
+            border: 1px solid #eee;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .stars-container {
+            color: var(--accent-gold);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            letter-spacing: 5px;
+        }
+        
+        .slider-controls {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .slider-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            background: white;
+            color: var(--primary-green);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .slider-btn:hover {
+            background: var(--topic-terracotta);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* --- FAQ --- */
+        .faq {
+            padding: 100px 0;
+            background-color: var(--topic-peach);
+        }
+
+        .accordion {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .accordion-item {
+            background: white;
+            margin-bottom: 15px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+            border: none;
+        }
+
+        .accordion-header {
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            font-size: 1.15rem;
+            color: var(--primary-green);
+            transition: background 0.3s, color 0.3s;
+        }
+        
+        .accordion-header:hover {
+            background-color: #fcfcfc;
+            color: var(--topic-terracotta);
+        }
+
+        .accordion-icon {
+            color: var(--accent-gold);
+            transition: transform 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background-color: white;
+            padding: 0 25px;
+        }
+        
+        .accordion-body p {
+            padding-bottom: 25px;
+            padding-top: 5px;
+            color: var(--text-dark);
+            border-top: 1px solid rgba(0,0,0,0.05);
+            margin-bottom: 0;
+        }
+        
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+        
+        .accordion-item.active .accordion-header {
+            color: var(--topic-terracotta);
+            background-color: #fff;
+        }
+
+        /* --- Form Section --- */
+        .register-section {
+            padding: 100px 0;
+            background-color: var(--primary-green);
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        
+        .register-section h2 { color: white; position: relative; z-index: 1;}
+        .register-section h2::after { background: var(--accent-gold); }
+        .register-section p { color: rgba(255,255,255,0.9); position: relative; z-index: 1;}
+
+        .form-box {
+            background: white;
+            max-width: 500px;
+            margin: 60px auto 0;
+            padding: 50px;
+            border-radius: 30px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
+            border: 8px solid var(--topic-peach);
+        }
+
+        .form-group { margin-bottom: 25px; text-align: right; position: relative; }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary-green);
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid #e1e1e1;
+            border-radius: 12px;
+            font-family: 'Rubik', sans-serif;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            background-color: #f9f9f9;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--topic-terracotta);
+            background-color: white;
+            box-shadow: 0 5px 15px rgba(224, 142, 121, 0.15);
+        }
+        
+        .error-message {
+            color: #d93025;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+            font-weight: 500;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.2rem; }
+            .hero { padding: 60px 0; }
+            .about-wrapper { flex-direction: column; }
+            .audience-grid { grid-template-columns: 1fr; gap: 30px;}
+            
+            .about-image { width: 280px; height: 280px; margin-bottom: 40px; }
+            
+            .webinar-details { flex-direction: column; align-items: stretch; gap: 15px; }
+            .detail-item { justify-content: center; }
+            .form-box { padding: 30px 20px; }
+            .btn { width: 100%; padding: 1rem; }
+            .slider-btn { width: 45px; height: 45px; font-size: 1.2rem; }
+        }
+
+    </style>
 </head>
 <body>
 
-    <header class="hero">
-        <div class="container">
-            <div class="free-badge"><i class="fas fa-gift"></i> וובינר חינמי - ללא עלות</div>
-            <h1>סובלת מנפיחות? גזים? צרבות?<br>יש דרך אחרת.</h1>
-            <p style="font-size: 1.3rem;">הצטרפו לוובינר מרתק ולמדו איך להרגיש קלות אמיתית - <strong>בצורה טבעית</strong>.</p>
-            <div class="webinar-details">
-                <div class="detail-item"><i class="far fa-calendar-alt"></i> יום שני | 19.01.26</div>
-                <div class="detail-item"><i class="far fa-clock"></i> שעה 20:00</div>
-                <div class="detail-item"><i class="fas fa-video"></i> שידור חי בזום</div>
-            </div>
-            <a href="#register" class="btn">שמרי לי מקום בחינם</a>
-        </div>
-    </header>
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container hero-content">
+            <!-- התגית ללא אנימציית float, רק כניסה עדינה -->
+            <div class="free-badge hero-animate-1"><i class="fas fa-gift"></i> וובינר חינמי - ללא עלות</div>
+            <p class="hero-pre-title hero-animate-2">וובינר מיוחד: איך להרגיע את מערכת העיכול ולהרגיש קלות אמיתית</p>
+            <h1 class="hero-animate-3">סובלת מנפיחות? גזים? צרבות?<br>יש דרך אחרת.</h1>
+            <p class="hero-animate-4" style="font-size: 1.3rem; max-width: 600px;">
+                ניסית כבר הכל ועדיין לא באמת מרגישה טוב?
+                הצטרפו לוובינר מרתק ולמדו איך לשפר את האנרגיה ואיכות החיים - <strong>בצורה טבעית ועדינה</strong>.
+            </p>
 
-    <section class="audience reveal">
-        <div class="container">
-            <div class="audience-grid">
-                <div class="audience-image-wrapper"><img src="pag2.jpg" alt="למי זה מתאים"></div>
-                <div>
-                    <h2 class="text-start">למי הוובינר מתאים?</h2>
-                    <ul class="check-list">
-                        <li><i class="fas fa-check"></i><span>מי שסובלת מנפיחות או גזים שחוזרים שוב ושוב.</span></li>
-                        <li><i class="fas fa-check"></i><span>מי שרוצה פתרונות <strong>פשוטים ומעשיים</strong> לבית.</span></li>
-                        <li><i class="fas fa-check"></i><span>בני 45+ שמבינים שהגיע הזמן לשים את הבטן במרכז.</span></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+            <div class="webinar-details hero-animate-4">
+                <div class="detail-item"><i class="far fa-calendar-alt"></i> יום שני | 19.01.26</div>
+                <div class="detail-item"><i class="far fa-clock"></i> שעה 20:00</div>
+                <div class="detail-item"><i class="fas fa-video"></i> שידור חי בזום</div>
+            </div>
 
-    <section class="about reveal">
-        <div class="container">
-            <div class="about-wrapper" style="display: flex; gap: 60px; align-items: center;">
-                <div class="about-image"><img src="profile.jpg.jpg" alt="רבקה הולצברג"></div>
-                <div class="about-text">
-                    <h2 class="text-start">נעים להכיר,</h2>
-                    <div class="about-quote">"ברגע שהתחלתי ליישם את הטכניקות שאחשוף בוובינר - הכל השתנה."</div>
-                    <p>ב‑5 השנים האחרונות ליוויתי מאות לקוחות וראיתי איך זה עוזר להם לחזור להרגיש טוב עם הגוף שלהם.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+            <a href="#register" class="btn hero-animate-4">שמרי לי מקום בחינם</a>
+        </div>
+    </header>
 
-    <section id="register" class="register-section reveal">
-        <div class="container">
-            <h2>הירשמי עכשיו בחינם</h2>
-            <div class="form-box">
-                <form id="registrationForm">
-                    <div class="form-group"><label>שם מלא *</label><input type="text" id="fullName" required></div>
-                    <div class="form-group"><label>אימייל</label><input type="email" id="email"></div>
-                    <div class="form-group"><label>טלפון נייד *</label><input type="tel" id="phone" maxlength="10" required></div>
-                    <button type="submit" class="btn" style="width: 100%;">שמרי לי מקום עכשיו</button>
-                </form>
-            </div>
-        </div>
-    </section>
+    <!-- Target Audience -->
+    <section class="audience reveal">
+        <div class="container">
+            <div class="audience-grid">
+                <div>
+                    <!-- תמונת "למי זה מתאים" -->
+                    <div class="audience-image-wrapper">
+                         <!-- עודכן לשם הקובץ החדש -->
+                         <img src="pag2.jpg" alt="למי זה מתאים">
+                    </div>
+                </div>
+                <div>
+                    <h2 class="text-start">למי הוובינר מתאים?</h2>
+                    <ul class="check-list">
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>מי שסובלת מנפיחות, גזים, כאבי בטן או צרבות שחוזרות שוב ושוב.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>מי שסובלת מ“מעי רגיז” ורוצה סוף סוף להבין מה לעשות.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>מי שרוצה פתרונות <strong>פשוטים ומעשיים</strong> שמתאימים לבית ולמשפחה.</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check"></i>
+                            <span>גברים ונשים בני 45+ שמבינים שהגיע הזמן לשים את הבטן במרכז.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <footer class="main-footer">
-        <p>&copy; 2026 כל הזכויות שמורות לרבקה הולצברג - בריאות שבאה מהטבע</p>
-        <nav class="legal-nav">
-            <a href="https://rivkaol.github.io/legal/privacy.html" target="_blank">מדיניות פרטיות</a>
-            <span style="opacity: 0.3;">|</span>
-            <a href="https://rivkaol.github.io/legal/terms.html" target="_blank">תנאי שימוש</a>
-            <span style="opacity: 0.3;">|</span>
-            <a href="https://rivkaol.github.io/legal/accessibility.html" target="_blank">הצהרת נגישות</a>
-        </nav>
-    </footer>
+    <!-- What will we learn -->
+    <section class="features reveal">
+        <div class="container">
+            <h2 style="text-align: center;">מה נגלה בוובינר?</h2>
+            <div class="cards-grid" style="margin-top: 50px;">
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-map-signs"></i></div>
+                    <h3>מפת דרכים יומית</h3>
+                    <p>מפת דרכים יומית לעיכול רגוע - מה לשלב בכל ארוחה כדי להרגיש קלה.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-ban"></i></div>
+                    <h3>3 טעויות נפוצות</h3>
+                    <p>שלוש טעויות אכילה שרוב האנשים עושים, שכדאי להפסיק כבר מחר בבוקר.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-search-plus"></i></div>
+                    <h3>זיהוי טריגרים</h3>
+                    <p>איך מזהים מזונות “טריגר” רגישים אצלך באופן אישי בלי בדיקות יקרות.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-capsules"></i></div>
+                    <h3>תוספים תומכים</h3>
+                    <p>פרוביוטיקה, אנזימי עיכול, פוסטביוטיקה ועוד - מה באמת עובד ומתי.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon"><i class="fas fa-wind"></i></div>
+                    <h3>תרגיל נשימה</h3>
+                    <p>תרגיל קצר שמוריד סטרס ומקל על עיכול תוך דקות (כי הכל מתחיל בראש).</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 60px;">
+                <p style="font-size: 1.2rem; max-width: 800px;">הוובינר פרקטי, נוח ליישום, ומבוסס על 12 שנות ניסיון בליווי אלפי נשים.</p>
+                <a href="#register" class="btn btn-green">אני רוצה להירשם בחינם</a>
+            </div>
+        </div>
+    </section>
 
-    <script>
-        // Scroll Animation
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                if (elementTop < windowHeight - 150) { reveals[i].classList.add("active"); }
-            }
-        }
-        window.addEventListener("scroll", reveal);
-        reveal();
+    <!-- About Speaker (Circular Image) -->
+    <section class="about reveal">
+        <div class="container">
+            <div class="about-wrapper" style="display: flex; gap: 60px; align-items: center;">
+                <div style="flex: 1; text-align: center;">
+                    <!-- תמונת המרצה - עודכן לשם הקובץ המדויק -->
+                    <div class="about-image">
+                        <div class="about-decor-circle"></div>
+                        <div class="about-decor-dots"></div>
+                        <img src="profile.jpg.jpg" alt="תמונת המרצה">
+                    </div>
+                </div>
+                <div class="about-text" style="flex: 1.3;">
+                    <h2 class="text-start">נעים להכיר,</h2>
+                    <p>לא תמיד הייתי מומחית לבריאות. שנים סבלתי מקנדידה מציקה שחזרה שוב ושוב וגרמה לי לחוסר נוחות מתמשך לאורך כל היום. ניסיתי פתרונות שונים, אבל שום דבר לא באמת עזר לאורך זמן.</p>
+                    
+                    <div class="about-quote">
+                        "ברגע שהתחלתי ליישם את הטכניקות שאחשוף בוובינר - ובמיוחד כששילבתי פרוביוטיקה באופן קבוע - התקפי הקנדידה כמעט ונעלמו לגמרי ב"ה."
+                    </div>
 
-        // Form Submission Logic
-        const form = document.getElementById('registrationForm');
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const submitBtn = form.querySelector('button[type="submit"]');
-            submitBtn.innerHTML = 'שולח...';
-            submitBtn.disabled = true;
+                    <p>החוויה האישית הזו שינתה את חיי, והיא זו שדחפה אותי להעמיק בתחום הבריאות הטבעית.</p>
+                    <p>ב‑5 השנים האחרונות ליוויתי מאות לקוחות וראיתי איך זה עוזר להם לשפר את העיכול, להפחית נפיחות ולחזור להרגיש טוב עם הגוף שלהם.</p>
+                    <p><strong>בוובינר הזה אשתף אותך במה שעבד עבורי ועבור כל כך הרבה אחרים.</strong></p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            const formData = {
-                fullName: document.getElementById('fullName').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value
-            };
+    <!-- Testimonials Carousel (Image Only) -->
+    <section class="testimonials reveal">
+        <div class="container">
+            <h2>לקוחות מרוצים מספרים</h2>
+            
+            <div class="slider-container">
+                <!-- Slide 1 -->
+                <div class="testimonial-slide active">
+                    <div class="stars-container"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <div class="testimonial-image-container">
+                        <!-- תמונת המלצה 1 -->
+                        <img src="1.jpg" alt="המלצה 1" class="testimonial-image">
+                    </div>
+                </div>
+                
+                <!-- Slide 2 -->
+                <div class="testimonial-slide">
+                    <div class="stars-container"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <div class="testimonial-image-container">
+                        <!-- תמונת המלצה 2 -->
+                        <img src="2.jpg" alt="המלצה 2" class="testimonial-image">
+                    </div>
+                </div>
 
-            fetch('https://hook.eu2.make.com/2ox33si66b64s7zf1fooyw95y6g674di', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
-            })
-            .then(response => {
-                if (response.ok) { window.location.href = 'thanks.html'; }
-                else { throw new Error(); }
-            })
-            .catch(() => {
-                alert('אירעה שגיאה. אנא נסי שוב.');
-                submitBtn.innerHTML = 'שמרי לי מקום עכשיו';
-                submitBtn.disabled = false;
-            });
-        });
-    </script>
+                <!-- Slide 3 -->
+                <div class="testimonial-slide">
+                    <div class="stars-container"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <div class="testimonial-image-container">
+                        <!-- תמונת המלצה 3 -->
+                        <img src="3.jpg" alt="המלצה 3" class="testimonial-image">
+                    </div>
+                </div>
+
+                <!-- Slide 4 -->
+                <div class="testimonial-slide">
+                    <div class="stars-container"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <div class="testimonial-image-container">
+                        <!-- תמונת המלצה 4 -->
+                        <img src="4.jpg" alt="המלצה 4" class="testimonial-image">
+                    </div>
+                </div>
+
+                <div class="slider-controls">
+                    <button class="slider-btn" onclick="nextSlide()"><i class="fas fa-chevron-right"></i></button>
+                    <button class="slider-btn" onclick="prevSlide()"><i class="fas fa-chevron-left"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq reveal">
+        <div class="container">
+            <h2 style="text-align: center;">שאלות נפוצות</h2>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        יהיה זמן לשאלות?
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-body">
+                        <p>כן, בסיום הוובינר.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        מקבלים הקלטה?
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-body">
+                        <p>במידת האפשר תישלח הקלטה לנרשמים.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        האם זה מתאים גם לגברים?
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-body">
+                        <p>בהחלט</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        צריך ידע מוקדם?
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-body">
+                        <p>לא. מגיעים כמו שאתם.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        יש הטבה מיוחדת?
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-body">
+                        <p>בהחלט - בלעדית למשתתפי הוובינר.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        יהיה דיבור על תוספים?
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="accordion-body">
+                        <p>כן. אציג אפשרויות וכל אחת בוחרת למה היא מתחברת.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration / Footer -->
+    <section id="register" class="register-section reveal">
+        <div class="container">
+            <h2>אל תפספסו את ההזדמנות לשנות את חייכם!</h2>
+            <p>הירשמי עכשיו וקבלי גישה מיידית לוובינר בחינם</p>
+            
+            <div class="form-box">
+                <form id="registrationForm" novalidate>
+                    <div class="form-group">
+                        <label>שם מלא *</label>
+                        <input type="text" id="fullName" placeholder="" required>
+                        <div class="error-message" id="nameError">אנא הזינו שם מלא (לפחות 2 תווים)</div>
+                    </div>
+                    <div class="form-group">
+                        <label>אימייל</label>
+                        <input type="email" id="email" placeholder="">
+                        <div class="error-message" id="emailError">אנא הזינו כתובת אימייל תקינה</div>
+                    </div>
+                    <div class="form-group">
+                        <label>טלפון נייד *</label>
+                        <input type="tel" id="phone" placeholder="" maxlength="10" required>
+                        <div class="error-message" id="phoneError">אנא הזינו נייד תקין (10 ספרות, מתחיל ב-05)</div>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">שמרי לי מקום עכשיו</button>
+                </form>
+                <p style="margin-top: 15px; font-size: 1rem; color: var(--primary-green); font-weight: 500;">ההרשמה ללא עלות</p>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: #143d30; padding: 30px; text-align: center; color: rgba(255,255,255,0.6); font-size: 0.9rem;">
+        <p>&copy; 2024 כל הזכויות שמורות לבטן רגועה.</p>
+    </footer>
+
+    <script>
+        // --- Scroll Animation Script ---
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        // Trigger once on load
+        reveal();
+
+        // --- Accordion Logic ---
+        const accordionItems = document.querySelectorAll('.accordion-item');
+
+        accordionItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+            header.addEventListener('click', () => {
+                item.classList.toggle('active');
+                const body = item.querySelector('.accordion-body');
+                if (item.classList.contains('active')) {
+                    body.style.maxHeight = body.scrollHeight + 'px';
+                } else {
+                    body.style.maxHeight = 0;
+                }
+            });
+        });
+
+        // --- Testimonial Slider Logic ---
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.testimonial-slide');
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+
+        // --- Form Validation & Submission Logic ---
+        const form = document.getElementById('registrationForm');
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let isValid = true;
+            
+            // Name Validation (At least 2 characters)
+            const nameInput = document.getElementById('fullName');
+            const nameError = document.getElementById('nameError');
+            if (nameInput.value.trim().length < 2) {
+                nameError.style.display = 'block';
+                nameInput.style.borderColor = '#d93025';
+                isValid = false;
+            } else {
+                nameError.style.display = 'none';
+                nameInput.style.borderColor = '#e1e1e1';
+            }
+
+            // Email Validation (Optional)
+            const emailInput = document.getElementById('email');
+            const emailError = document.getElementById('emailError');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            
+            // בדיקה רק אם השדה לא ריק
+            if (emailInput.value.trim() !== "" && !emailRegex.test(emailInput.value)) {
+                emailError.style.display = 'block';
+                emailInput.style.borderColor = '#d93025';
+                isValid = false;
+            } else {
+                emailError.style.display = 'none';
+                emailInput.style.borderColor = '#e1e1e1';
+            }
+
+            // Phone Validation (Starts with 05 and exactly 10 digits)
+            const phoneInput = document.getElementById('phone');
+            const phoneError = document.getElementById('phoneError');
+            const phoneRegex = /^05\d{8}$/; 
+            if (!phoneRegex.test(phoneInput.value)) {
+                phoneError.style.display = 'block';
+                phoneInput.style.borderColor = '#d93025';
+                isValid = false;
+            } else {
+                phoneError.style.display = 'none';
+                phoneInput.style.borderColor = '#e1e1e1';
+            }
+
+            if (isValid) {
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalBtnText = submitBtn.innerHTML;
+                
+                // Show loading state
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> שולח...';
+                submitBtn.disabled = true;
+
+                // Prepare data for Make (Integromat)
+                const formData = {
+                    fullName: nameInput.value,
+                    email: emailInput.value,
+                    phone: phoneInput.value
+                };
+
+                // Send data to Webhook
+                fetch('https://hook.eu2.make.com/2ox33si66b64s7zf1fooyw95y6g674di', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        // Success UI
+                        submitBtn.innerHTML = '<i class="fas fa-check"></i> נרשמת בהצלחה!';
+                        submitBtn.style.backgroundColor = '#25D366'; 
+                        
+                        setTimeout(() => {
+                            // Redirect to thank you page
+                            window.location.href = 'thanks.html';
+                        }, 2000);
+                    } else {
+                        throw new Error('Network response was not ok');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('אירעה שגיאה בשליחת הטופס. אנא נסי שוב מאוחר יותר.');
+                    submitBtn.innerHTML = originalBtnText;
+                    submitBtn.disabled = false;
+                });
+            }
+        });
+    </script>
 </body>
 </html>
+ תעשה לי אתה את הטמעה
