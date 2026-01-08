@@ -57,7 +57,7 @@
 
         /* --- Header & Hero --- */
         .hero {
-            padding: 60px 0 40px;
+            padding: 60px 0 60px; /* הוגדל מעט המרווח למטה כדי לתת מקום לכרטיס החופף */
             background: linear-gradient(180deg, var(--topic-peach) 0%, #ffffff 100%);
             border-bottom-left-radius: 50px;
             border-bottom-right-radius: 50px;
@@ -94,16 +94,76 @@
             font-weight: 500;
         }
 
+        /* --- Consultation Card (Moved Top & Overlapping) --- */
+        .consultation-card {
+            background-color: white;
+            padding: 40px 30px;
+            border-radius: var(--radius-card);
+            /* שונה: כעת זה הכרטיס שחופף על ההירו */
+            margin: -40px auto 50px; 
+            border: 2px solid var(--accent-gold);
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            position: relative;
+            z-index: 10; /* מעל ההירו */
+            animation: fadeIn 1s ease-out;
+        }
+
+        .consultation-card::before {
+            content: '\f086'; /* Comments icon */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: var(--topic-peach);
+            opacity: 0.5;
+        }
+
+        .consultation-card h3 {
+            color: var(--primary-green);
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+        }
+
+        .consultation-card p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            max-width: 650px;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--text-dark);
+        }
+
+        .btn-consultation {
+            background-color: var(--accent-gold);
+            color: white;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: var(--radius-btn);
+            display: inline-block;
+            margin-top: 15px;
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .btn-consultation:hover {
+            transform: translateY(-3px);
+            background-color: #c49f2b;
+        }
+
         /* --- Info Card --- */
         .info-card {
             background: white;
             padding: 30px;
             border-radius: var(--radius-card);
             box-shadow: var(--shadow-soft);
-            margin: -30px auto 40px; /* Overlap effect */
+            /* שונה: ביטול החפיפה למעלה כי כרטיס הייעוץ תפס את המקום */
+            margin: 0 auto 40px; 
             max-width: 700px;
             position: relative;
-            z-index: 10;
             border-top: 5px solid var(--primary-green);
         }
 
@@ -125,7 +185,7 @@
 
         /* --- Next Steps --- */
         .next-steps {
-            text-align: right; /* RTL alignment for list */
+            text-align: right;
             max-width: 600px;
             margin: 0 auto 50px;
             background: white;
@@ -162,7 +222,7 @@
 
         /* --- WhatsApp Section --- */
         .whatsapp-section {
-            background-color: #e9fdf0; /* Very light green */
+            background-color: #e9fdf0;
             padding: 50px 25px;
             border-radius: var(--radius-card);
             margin-bottom: 50px;
@@ -248,31 +308,15 @@
             font-size: 1.2rem;
         }
 
-        /* --- Footer Question --- */
-        .footer-question {
-            margin-top: auto;
-            padding: 40px 0;
-            background: white;
-            border-top: 1px solid #eee;
-        }
-
-        .contact-link {
-            color: var(--primary-green);
-            font-weight: 500;
-            border-bottom: 1px dashed var(--primary-green);
-            padding-bottom: 2px;
-            transition: all 0.3s;
-        }
-
-        .contact-link:hover {
-            color: var(--accent-gold);
-            border-color: var(--accent-gold);
-        }
-
         /* Animation */
         @keyframes popIn {
             0% { transform: scale(0); opacity: 0; }
             100% { transform: scale(1); opacity: 1; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Responsive */
@@ -298,7 +342,18 @@
     </header>
 
     <div class="container">
-        <!-- Webinar Info -->
+        <!-- Consultation Section (Moved to Very Top, Overlapping Hero) -->
+        <div class="consultation-card">
+            <h3>רוצה להתייעץ איתי עוד לפני הוובינר?</h3>
+            <p>אם את מרגישה שהגיע הזמן לקחת אחריות על בריאות מערכת העיכול שלך, להבין מה באמת משפיע על תפקוד המעיים ולבחור את הצעד הראשון שיעשה את ההבדל.</p>
+            <p><strong>אני מזמינה אותך לשיחת ייעוץ אישית של 15 דקות, ללא עלות וללא התחייבות.</strong></p>
+            <p>במהלך השיחה נבדוק יחד איך להתחיל לראות שיפור אמיתי בעיכול מבפנים.</p>
+            <a href="https://calendly.com/rivkaol/meet-with-me-2" class="btn-consultation" target="_blank">
+                <i class="far fa-calendar-check"></i> לקביעת שיחת ייעוץ במתנה
+            </a>
+        </div>
+
+        <!-- Webinar Info (Moved below Consultation) -->
         <div class="info-card">
             <h2 style="font-size: 1.4rem; margin-bottom: 15px; color: var(--text-dark);">אני מצפה לראותכם בוובינר: <br><span style="color: var(--primary-green);">סוף לנפיחות, גזים וצרבות</span></h2>
             <div class="webinar-details">
@@ -343,16 +398,6 @@
             <p>נסו להפחית צריכת סוכר ביום שלפני הוובינר. תופתעו כמה טוב תרגישו!</p>
         </div>
     </div>
-
-    <!-- Footer / Question -->
-    <footer class="footer-question">
-        <div class="container">
-            <p>יש לכם שאלות לפני הוובינר? 
-                <a href="https://wa.me/504207702?text=היי+רבקה+יש+לי+שאלה+לוובינר" class="contact-link" target="_blank">לחצו כאן לשליחה לרבקה</a>
-            </p>
-        </div>
-    </footer>
 <script src="https://rivkaol.github.io/legal-footer.js"></script>
 </body>
-
 </html>
