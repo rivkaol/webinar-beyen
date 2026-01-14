@@ -44,6 +44,8 @@
             font-family: 'Rubik', sans-serif;
             background-color: var(--bg-cream);
             color: var(--text-dark);
+            /* הגדלה נוספת של גופן הבסיס ל-22 פיקסל */
+            font-size: 22px; 
             line-height: 1.8;
             overflow-x: hidden;
         }
@@ -79,7 +81,7 @@
             100% { transform: scale(1); opacity: 0.05; }
         }
 
-        /* --- טיפוגרפיה משופרת --- */
+        /* --- טיפוגרפיה משופרת ומוגדלת --- */
         h1, h2, h3 {
             color: var(--primary-green);
             font-weight: 700;
@@ -87,30 +89,33 @@
             margin-bottom: 1.2rem;
         }
 
-        h1 { font-size: 2.8rem; letter-spacing: -1px; }
-        h2 { font-size: 2.2rem; margin-bottom: 2rem; position: relative; display: inline-block; }
-        h3 { font-size: 1.4rem; font-weight: 600; }
+        /* הגדלה משמעותית של הכותרות */
+        h1 { font-size: 3.8rem; letter-spacing: -1.5px; line-height: 1.1; }
+        h2 { font-size: 3rem; margin-bottom: 2rem; position: relative; display: inline-block; }
+        h3 { font-size: 2rem; font-weight: 600; }
         
         p { 
-            margin-bottom: 1.2rem; 
+            margin-bottom: 1.5rem; 
             font-weight: 400; 
             color: var(--text-dark);
             max-width: 70ch;
             margin-left: auto;
             margin-right: auto;
+            /* הגדלה נוספת של טקסט רץ */
+            font-size: 1.35rem; 
         }
         
         h2::after {
             content: '';
             display: block;
-            width: 60px;
-            height: 4px;
+            width: 80px; 
+            height: 5px; 
             background: var(--topic-terracotta);
-            margin: 10px auto 0;
-            border-radius: 2px;
+            margin: 15px auto 0;
+            border-radius: 3px;
         }
 
-        .text-start h2::after { margin: 10px 0 0 0; }
+        .text-start h2::after { margin: 15px 0 0 0; }
 
         strong {
             color: var(--topic-terracotta);
@@ -122,8 +127,8 @@
             display: inline-block;
             background-color: var(--accent-gold);
             color: white;
-            padding: 1.1rem 3rem;
-            font-size: 1.2rem;
+            padding: 1.3rem 4rem; /* כפתורים גדולים עוד יותר */
+            font-size: 1.6rem; /* טקסט כפתור מוגדל */
             font-weight: 600;
             border-radius: var(--radius-btn);
             transition: all 0.3s ease;
@@ -134,7 +139,7 @@
         }
 
         .btn:hover {
-            transform: translateY(-2px); /* תנועה קטנה יותר בהובר */
+            transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
         }
         
@@ -153,7 +158,7 @@
         .btn-green:hover { background-color: #143d30; }
 
         .container {
-            max-width: 1100px;
+            max-width: 1200px; /* הרחבת הקונטיינר כדי להכיל את הטקסט הגדול */
             margin: 0 auto;
             padding: 0 25px;
             position: relative;
@@ -170,10 +175,10 @@
 
         /* התאמה לטופס בתוך ההירו */
         .hero .form-box {
-            margin: 40px auto 0; /* מרווח מהטקסט שמעליו */
-            box-shadow: 0 20px 50px rgba(224, 142, 121, 0.15); /* צללית רכה יותר בצבע טרה-קוטה */
-            border: 4px solid rgba(255, 255, 255, 0.8); /* מסגרת עדינה */
-            padding: 40px;
+            margin: 50px auto 0;
+            box-shadow: 0 20px 50px rgba(224, 142, 121, 0.15);
+            border: 4px solid rgba(255, 255, 255, 0.8);
+            padding: 50px; 
         }
 
         .hero-animate-1 { animation: fadeUp 0.8s ease-out forwards; opacity: 0; }
@@ -185,14 +190,13 @@
             display: inline-block;
             background-color: var(--primary-green);
             color: white;
-            padding: 12px 30px; /* קצת יותר גדול ובולט */
+            padding: 15px 35px;
             border-radius: 50px;
             font-weight: 700;
-            font-size: 1.2rem; /* פונט מוגדל */
-            margin-bottom: 25px;
+            font-size: 1.5rem; /* פונט מוגדל */
+            margin-bottom: 30px;
             box-shadow: 0 4px 15px rgba(27, 77, 62, 0.2);
             border: 2px solid var(--accent-gold);
-            /* ביטלתי את האנימציה המרחפת */
         }
 
         .hero::before {
@@ -207,13 +211,13 @@
             border-radius: 50%;
             filter: blur(80px);
             z-index: 0;
-            animation: subtlePulse 15s ease-in-out infinite; /* תנועה איטית מאוד */
+            animation: subtlePulse 15s ease-in-out infinite;
         }
 
         .hero-content {
             position: relative;
             z-index: 1;
-            max-width: 900px;
+            max-width: 1000px; 
             margin: 0 auto;
         }
 
@@ -221,37 +225,38 @@
             display: flex;
             justify-content: center;
             gap: 25px;
-            margin: 40px 0;
+            margin: 50px 0;
             flex-wrap: wrap;
         }
 
         .detail-item {
             background: white;
-            padding: 15px 30px;
+            padding: 18px 35px; /* ריפוד מוגדל */
             border-radius: 50px;
             font-weight: 500;
             color: var(--primary-green);
             box-shadow: var(--shadow-soft);
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
             border: 1px solid rgba(27, 77, 62, 0.05);
             transition: transform 0.3s;
+            font-size: 1.4rem; /* גודל פונט פרטים מוגדל */
         }
         
         .detail-item:hover { transform: translateY(-3px); }
-        .detail-item i { color: var(--accent-gold); font-size: 1.2rem; }
+        .detail-item i { color: var(--accent-gold); font-size: 1.5rem; }
 
         /* --- Section: Audience --- */
         .audience {
-            padding: 90px 0;
+            padding: 100px 0;
             background-color: white;
         }
 
         .audience-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 80px; 
             align-items: center;
         }
 
@@ -264,25 +269,26 @@
             box-shadow: var(--shadow-soft);
             width: 100%;
             height: 100%;
-            min-height: 400px;
+            min-height: 450px;
             object-fit: cover;
         }
 
         .check-list li {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             display: flex;
             align-items: flex-start;
-            font-size: 1.15rem;
+            /* הגדלה משמעותית של רשימת הצ'קליסט */
+            font-size: 1.45rem; 
             color: var(--text-dark);
         }
 
         .check-list i {
             color: var(--topic-terracotta);
-            margin-left: 20px;
+            margin-left: 25px;
             margin-top: 5px;
-            font-size: 1.4rem;
+            font-size: 1.8rem;
             background: var(--topic-peach);
-            padding: 8px;
+            padding: 12px;
             border-radius: 50%;
             flex-shrink: 0;
         }
@@ -295,37 +301,40 @@
 
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 35px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
+            gap: 40px;
         }
 
         .card {
             background: white;
-            padding: 40px 30px;
+            padding: 50px 35px;
             border-radius: var(--radius-card);
             box-shadow: var(--shadow-soft);
-            border-top: 6px solid var(--accent-gold);
+            border-top: 8px solid var(--accent-gold); 
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             height: 100%;
         }
 
         .card:hover {
-            transform: translateY(-5px); /* תנועה עדינה יותר */
+            transform: translateY(-5px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.08);
         }
 
         .card-icon {
-            font-size: 2.2rem;
+            font-size: 2.8rem;
             color: var(--topic-terracotta);
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             background: var(--topic-peach);
-            width: 70px;
-            height: 70px;
+            width: 90px;
+            height: 90px;
             display: flex;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
         }
+
+        .card h3 { font-size: 2rem; }
+        .card p { font-size: 1.4rem; }
 
         /* --- About (נעים להכיר) --- */
         .about {
@@ -337,8 +346,8 @@
         
         .about-image {
             position: relative;
-            width: 350px;
-            height: 350px;
+            width: 400px; 
+            height: 400px;
             margin: 0 auto;
         }
 
@@ -354,7 +363,6 @@
             transition: transform 0.5s ease;
         }
         
-        /* תנועה עדינה מאוד בהובר */
         .about-image:hover img {
             transform: scale(1.02); 
         }
@@ -384,13 +392,14 @@
         
         .about-quote {
             background: var(--bg-cream);
-            padding: 30px;
+            padding: 40px;
             border-radius: 0 20px 20px 0;
-            border-right: 5px solid var(--primary-green);
-            margin: 30px 0;
-            font-size: 1.15rem;
+            border-right: 6px solid var(--primary-green);
+            margin: 40px 0;
+            font-size: 1.6rem; /* ציטוט מוגדל */
             color: var(--primary-green);
             font-style: italic;
+            line-height: 1.6;
         }
 
         /* --- Testimonials --- */
@@ -402,7 +411,7 @@
 
         .slider-container {
             position: relative;
-            max-width: 700px;
+            max-width: 800px;
             margin: 50px auto 0;
             overflow: hidden; 
             padding: 10px;
@@ -422,7 +431,7 @@
 
         .testimonial-image-container {
             background: white;
-            padding: 15px;
+            padding: 20px;
             border-radius: 20px;
             box-shadow: var(--shadow-soft);
             display: inline-block;
@@ -431,7 +440,7 @@
 
         .testimonial-image {
             width: 100%;
-            max-width: 400px; 
+            max-width: 500px; 
             height: auto;
             border-radius: 10px;
             border: 1px solid #eee;
@@ -441,8 +450,8 @@
 
         .stars-container {
             color: var(--accent-gold);
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-size: 2.2rem; /* כוכבים גדולים */
+            margin-bottom: 20px;
             letter-spacing: 5px;
         }
         
@@ -454,13 +463,13 @@
         }
 
         .slider-btn {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
             border: none;
             background: white;
             color: var(--primary-green);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             cursor: pointer;
             transition: all 0.3s;
             display: flex;
@@ -482,13 +491,13 @@
         }
 
         .accordion {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         .accordion-item {
             background: white;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 4px 10px rgba(0,0,0,0.03);
@@ -496,13 +505,13 @@
         }
 
         .accordion-header {
-            padding: 20px 25px;
+            padding: 25px 30px;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: 500;
-            font-size: 1.15rem;
+            font-weight: 600;
+            font-size: 1.5rem; /* שאלות מוגדלות */
             color: var(--primary-green);
             transition: background 0.3s, color 0.3s;
         }
@@ -515,7 +524,7 @@
         .accordion-icon {
             color: var(--accent-gold);
             transition: transform 0.3s ease;
-            font-size: 1rem;
+            font-size: 1.4rem;
         }
 
         .accordion-body {
@@ -523,15 +532,16 @@
             overflow: hidden;
             transition: max-height 0.3s ease;
             background-color: white;
-            padding: 0 25px;
+            padding: 0 30px;
         }
         
         .accordion-body p {
-            padding-bottom: 25px;
-            padding-top: 5px;
+            padding-bottom: 30px;
+            padding-top: 10px;
             color: var(--text-dark);
             border-top: 1px solid rgba(0,0,0,0.05);
             margin-bottom: 0;
+            font-size: 1.35rem; /* תשובות מוגדלות */
         }
         
         .accordion-item.active .accordion-icon {
@@ -556,23 +566,23 @@
             color: white; 
             position: relative; 
             z-index: 1;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.1); /* שיפור ניגודיות */
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1); 
         }
         
         .register-section h2::after { background: var(--accent-gold); }
         
         .register-section p { 
-            color: rgba(255,255,255,1); /* לבן מלא לניגודיות טובה יותר */
+            color: rgba(255,255,255,1); 
             position: relative; 
             z-index: 1;
-            font-size: 1.1rem;
+            font-size: 1.5rem;
         }
 
         .form-box {
             background: white;
-            max-width: 500px;
+            max-width: 600px; /* טופס רחב יותר */
             margin: 60px auto 0;
-            padding: 50px;
+            padding: 60px; /* ריפוד גדול יותר */
             border-radius: 30px;
             box-shadow: 0 25px 60px rgba(0,0,0,0.3);
             position: relative;
@@ -580,53 +590,52 @@
             border: 8px solid var(--topic-peach);
         }
 
-        .form-group { margin-bottom: 25px; text-align: right; position: relative; }
+        .form-group { margin-bottom: 30px; text-align: right; position: relative; }
         
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             color: var(--primary-green);
             font-weight: 700;
-            font-size: 1rem;
+            font-size: 1.4rem; /* תווית מוגדלת עוד יותר */
         }
 
         .form-group input {
             width: 100%;
-            padding: 16px 20px;
+            padding: 20px 25px; /* שדה גדול ונוח */
             border: 1px solid #e1e1e1;
             border-radius: 12px;
             font-family: 'Rubik', sans-serif;
-            font-size: 1.1rem;
+            font-size: 1.4rem; /* טקסט הקלדה מוגדל */
             transition: all 0.3s;
             background-color: #f9f9f9;
         }
 
-        /* שיניתי כאן את הצבע לזהב בזמן פוקוס */
         .form-group input:focus {
             outline: none;
-            border-color: var(--accent-gold); /* זהב במקום טרה-קוטה */
+            border-color: var(--accent-gold); 
             background-color: white;
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.25); /* הילה זהובה עדינה */
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.25); 
         }
         
         .error-message {
             color: #d93025;
-            font-size: 0.85rem;
-            margin-top: 5px;
+            font-size: 1.1rem;
+            margin-top: 8px;
             display: none;
             font-weight: 500;
         }
         
         /* --- Bottom CTA Section --- */
         .bottom-cta {
-            padding: 80px 0;
+            padding: 100px 0;
             text-align: center;
             background: #fff;
         }
         
         .bottom-cta h2 {
-            margin-bottom: 30px;
-            display: block; /* שינוי: מכריח ירידת שורה */
+            margin-bottom: 40px;
+            display: block; 
         }
 
         @keyframes fadeIn {
@@ -636,18 +645,18 @@
 
         /* --- Responsive --- */
         @media (max-width: 768px) {
-            h1 { font-size: 2.2rem; }
+            h1 { font-size: 2.8rem; }
             .hero { padding: 60px 0; }
             .about-wrapper { flex-direction: column; }
-            .audience-grid { grid-template-columns: 1fr; gap: 30px;}
+            .audience-grid { grid-template-columns: 1fr; gap: 40px;}
             
-            .about-image { width: 280px; height: 280px; margin-bottom: 40px; }
+            .about-image { width: 300px; height: 300px; margin-bottom: 40px; }
             
             .webinar-details { flex-direction: column; align-items: stretch; gap: 15px; }
             .detail-item { justify-content: center; }
             .form-box { padding: 30px 20px; }
-            .btn { width: 100%; padding: 1rem; }
-            .slider-btn { width: 45px; height: 45px; font-size: 1.2rem; }
+            .btn { width: 100%; padding: 1.2rem; font-size: 1.3rem; }
+            .slider-btn { width: 55px; height: 55px; font-size: 1.4rem; }
         }
 
     </style>
@@ -661,7 +670,7 @@
             <div class="free-badge hero-animate-1"><i class="fas fa-gift"></i> וובינר חינמי - ללא עלות</div>
             <p class="hero-pre-title hero-animate-2">וובינר מיוחד: איך להרגיע את מערכת העיכול ולהרגיש קלות אמיתית</p>
             <h1 class="hero-animate-3">סובלת מנפיחות? גזים? צרבות?<br>יש דרך אחרת.</h1>
-            <p class="hero-animate-4" style="font-size: 1.3rem; max-width: 600px;">
+            <p class="hero-animate-4" style="font-size: 1.5rem; max-width: 700px;">
                 ניסית כבר הכל ועדיין לא באמת מרגישה טוב?
                 הצטרפו לוובינר מרתק ולמדו איך לשפר את האנרגיה ואיכות החיים - <strong>בצורה טבעית ועדינה</strong>.
             </p>
@@ -692,7 +701,12 @@
                     </div>
                     <button type="submit" class="btn" style="width: 100%;">שמרי לי מקום עכשיו</button>
                 </form>
-                <p style="margin-top: 15px; font-size: 1rem; color: var(--primary-green); font-weight: 500;">ההרשמה ללא עלות</p>
+                
+                <!-- תוספת טקסט מתחת לכפתור -->
+                <div style="margin-top: 25px; text-align: center; color: var(--primary-green); font-weight: 600;">
+                    <p style="font-size: 1.4rem; margin-bottom: 5px;"><i class="fas fa-video"></i> הקלטה תישלח לנרשמות</p>
+                    <p style="font-size: 1.4rem; margin-bottom: 0;">ההרשמה ללא עלות</p>
+                </div>
             </div>
         </div>
     </header>
@@ -792,7 +806,7 @@
                     </div>
                     <button type="submit" class="btn" style="width: 100%;">שמרי לי מקום עכשיו</button>
                 </form>
-                <p style="margin-top: 15px; font-size: 1rem; color: var(--primary-green); font-weight: 500;">ההרשמה ללא עלות</p>
+                <p style="margin-top: 15px; font-size: 1.2rem; color: var(--primary-green); font-weight: 500;">ההרשמה ללא עלות</p>
             </div>
         </div>
     </section>
