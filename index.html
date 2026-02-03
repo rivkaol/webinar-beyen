@@ -696,8 +696,10 @@
                     </div>
                     <div class="form-group">
                         <label>טלפון נייד *</label>
-                        <input type="tel" placeholder="" maxlength="10" required>
-                        <div class="error-message">אנא הזינו נייד תקין (10 ספרות, מתחיל ב-05)</div>
+                        <!-- הסרתי את הגבלת ה-maxlength ל-10 כדי לאפשר מספרים ארוכים יותר -->
+                        <input type="tel" placeholder="" required>
+                        <!-- עדכון טקסט השגיאה -->
+                        <div class="error-message">אנא הזינו מספר טלפון תקין (מינימום 9 ספרות)</div>
                     </div>
                     <button type="submit" class="btn" style="width: 100%;">שמרי לי מקום עכשיו</button>
                 </form>
@@ -801,8 +803,10 @@
                     </div>
                     <div class="form-group">
                         <label>טלפון נייד *</label>
-                        <input type="tel" placeholder="" maxlength="10" required>
-                        <div class="error-message">אנא הזינו נייד תקין (10 ספרות, מתחיל ב-05)</div>
+                        <!-- הסרתי את הגבלת ה-maxlength גם כאן -->
+                        <input type="tel" placeholder="" required>
+                        <!-- עדכון טקסט השגיאה -->
+                        <div class="error-message">אנא הזינו מספר טלפון תקין (מינימום 9 ספרות)</div>
                     </div>
                     <button type="submit" class="btn" style="width: 100%;">שמרי לי מקום עכשיו</button>
                 </form>
@@ -1062,9 +1066,13 @@
                     emailInput.style.borderColor = '#e1e1e1';
                 }
 
-                // Phone Validation (Starts with 05 and exactly 10 digits)
-                const phoneRegex = /^05\d{8}$/; 
-                if (!phoneRegex.test(phoneInput.value)) {
+                // Phone Validation (International Support)
+                // מאפשר: פלוס אופציונלי בהתחלה, ואז בין 9 ל-15 ספרות (סטנדרט בינלאומי)
+                // מסיר רווחים ומקפים לפני הבדיקה כדי למנוע שגיאות הקלדה נפוצות
+                const cleanPhone = phoneInput.value.replace(/[\s-]/g, '');
+                const phoneRegex = /^\+?[0-9]{9,15}$/;
+                
+                if (!phoneRegex.test(cleanPhone)) {
                     phoneError.style.display = 'block';
                     phoneInput.style.borderColor = '#d93025';
                     isValid = false;
